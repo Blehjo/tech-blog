@@ -2,10 +2,10 @@ const { Comment } = require('../models');
 
 const commentData = [
   {
-    user_id: 1,
-    post_id: 1,
     comment:
-      'Branches with pink apricot blossoms against a blue background.',
+    'Branches with pink apricot blossoms against a blue background.',
+    post_id: 1,
+    user_id: 1,
   },
   {
     comment: 'Pink cosmos flowers against a blue sky.',
@@ -23,33 +23,33 @@ const commentData = [
     user_id: 2,
   },
   {
-    user_id: 3,
     comment: 4,
     post_id: '05-beach-sunrise.jpg',
-  },
-  {
     user_id: 3,
+  },
+  {
+    comment:
+    'Trees with red, orange, yellow leaves reflected on a still lake.',
     post_id: 5,
-    comment:
-      'Trees with red, orange, yellow leaves reflected on a still lake.',
+    user_id: 3,
   },
   {
-    user_id: 4,
+    comment:
+    'Mountains with red and yellow leaves against a background of hazy rolling hills.',
     post_id: 6,
-    comment:
-      'Mountains with red and yellow leaves against a background of hazy rolling hills.',
-  },
-  {
     user_id: 4,
-    post_id: 7,
-    comment:
-      'Trees with white frozen branches reflected on a frozen river against a light pink sky.',
   },
   {
+    comment:
+    'Trees with white frozen branches reflected on a frozen river against a light pink sky.',
+    post_id: 7,
+    user_id: 4,
+  },
+  {
+    comment:
+    'Log cabin blanketed in heavy white snow with tall snow covered pine trees in the background.',
     user_id: 4,
     post_id: 8,
-    comment:
-      'Log cabin blanketed in heavy white snow with tall snow covered pine trees in the background.',
   },
 ];
 

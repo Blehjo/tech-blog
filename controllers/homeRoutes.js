@@ -10,10 +10,10 @@ router.get('/',  async (req, res) => {
         order: [['name', 'ASC']],
       });
   
-      const users = userData.map((project) => project.get({ plain: true }));
+      const user = userData.map((project) => project.get({ plain: true }));
   
       res.render('homepage', {
-        users,
+        user,
         logged_in: req.session.logged_in,
       });
     } catch (err) {
