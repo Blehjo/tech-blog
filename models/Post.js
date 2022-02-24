@@ -15,14 +15,17 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    starting_date: {
+    post_date: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    ending_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
+    post_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'post',
+          key: 'id',
+        },
+      },
   },
   {
     sequelize,
