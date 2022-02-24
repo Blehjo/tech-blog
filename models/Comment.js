@@ -11,30 +11,17 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    artist: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    exhibition_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    filename: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     post_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'post',
+        key: 'id',
+      },
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references:{
+        model: 'user',
         key: 'id',
       },
     },
