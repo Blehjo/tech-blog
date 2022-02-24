@@ -1,34 +1,55 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Post } = require('../models');
 const withAuth = require('../utils/auth');
 
 
-router.get('/',  async (req, res) => {
-    try {
-      const userData = await User.findAll({
-        attributes: { exclude: ['password'] },
-        order: [['name', 'ASC']],
-      });
+router.get('/', async (req, res) => {
+  try {
+    const userData = await Post.findAll({
+      attributes: { exclude: ['user_id'] },
+      order: [['post_date', 'DESC']],
+    });
+    
+    const users = userData.map((project) => project.get({ plain: true }));
+
+    res.render('homepage', {
+      users,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/posts', async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      attributes: { exclude: ['user_id'] },
+      order: [['post_date', 'DESC']],
+    });
   
-      const user = userData.map((project) => project.get({ plain: true }));
+    const posts = postData.map((project) => project.get({ plain: true }));
   
-      res.render('homepage', {
-        user,
-        logged_in: req.session.logged_in,
-      });
-    } catch (err) {
-      res.status(500).json(err);
-    }
+  res.render('homepage', {
+    posts,
+    logged_in: req.session.logged_in,
   });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
   
-  router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
-      res.redirect('/');
-      return;
-    }
-  
-    res.render('login');
-  });
-  
-  module.exports = router;
+router.get('/login', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('login');
+});
+
+module.exports = router;
   
