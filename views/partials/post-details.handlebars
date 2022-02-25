@@ -1,11 +1,10 @@
 <section class="card">
-  <a href="/users/{{id}}">
-    <header>Post By: {{username}}</header>
-  </a>
-  <a href="/posts/{{id}}">
+  <header>Posted By: <a href="/user/{{id}}">{{username}}</a></header>
+  
     <div>
-      <p>{{posts.[0].post_content}}</p>
+      <a href="/post/{{id}}">
+        <p>{{posts.[0].post_content}}</p>
+      </a>
       <p>{{format_date posts.[0].post_date}}</p>
     </div>
-  </a>
 </section>

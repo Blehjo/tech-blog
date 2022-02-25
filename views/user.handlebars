@@ -1,16 +1,8 @@
-<section class="container">
-  <h3 class="user-name">{{user.name}}</h3>
-  <section class="flex-row justify-center">
-    {{#each user.posts as |post|}}
-    <section class="card">
-      <a href="/post/{{id}}">
-        <header>{{post_content}}</header>
-
-        <div class="card-body">
-          <p>Posted: {{ format_date post_date}}</p>
-        </div>
-      </a>
-    </section>
-    {{/each}}
-  </section>
+<section class="card">
+<div>
+  <h1>{{user.username}}'s Posts</h1>
+</div>
+{{#each user.posts as |post|}}
+{{> user-posts}}
+{{/each}}
 </section>

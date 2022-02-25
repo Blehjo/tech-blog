@@ -61,17 +61,19 @@ router.get('/post/:id', async (req, res) => {
     const postData = await Post.findByPk(req.params.id, {
       include: [
         {
+          model: User,
+          attributes: [
+            'username',
+          ], 
+        },
+        {
           model: Comment,
-          attributes: [ 
-            'comment', 
-            'post_date' 
-          ],
-          // order: [['post_date', 'DESC']],
+          attributes: [ 'comment', 'post_date' ],
         },
       ]
     });
   
-    const post = postData.map((project) => project.get({ plain: true }));
+    const post = postData.get({ plain: true });
   
   res.render('individualpost', {
     post,
@@ -85,21 +87,30 @@ router.get('/post/:id', async (req, res) => {
 
 router.get('/user/:id', async (req, res) => {
   try {
-    const userData = await User.findbyPk(req.params.id, { 
+    const userData = await User.findByPk(req.params.id, { 
       include: [
         {
           model: Post,
           attributes: [
-            'id',
             'post_content',
             'post_date',
+          ], 
+        },
+        {
+          model: Comment,
+          attributes: [ 
+            'comment', 
+            'post_date' 
           ],
         },
-      ],
-    });    
+      ]
+    });   
 
     const user = userData.get({ plain: true });
-    res.render('user', { user });
+    res.render('user', { 
+      user,
+      logged_in: req.session.logged_in, 
+    });
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
