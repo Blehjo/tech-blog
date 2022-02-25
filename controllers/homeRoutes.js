@@ -27,14 +27,19 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/posts', async (req, res) => {
+router.get('/post', async (req, res) => {
   try {
     const postData = await Post.findAll({
       include: [
         {
+          model: User,
+          attributes: [
+            'username',
+          ], 
+        },
+        {
           model: Comment,
           attributes: [ 'comment', 'post_date' ],
-          order: [['post_date', 'DESC']],
         },
       ]
     });
@@ -51,7 +56,7 @@ router.get('/posts', async (req, res) => {
 });
 
 
-router.get('/posts/:id', async (req, res) => {
+router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
@@ -61,15 +66,16 @@ router.get('/posts/:id', async (req, res) => {
             'comment', 
             'post_date' 
           ],
-          order: [['post_date', 'DESC']],
+          // order: [['post_date', 'DESC']],
         },
       ]
     });
   
     const post = postData.map((project) => project.get({ plain: true }));
   
-  res.render('post', {
+  res.render('individualpost', {
     post,
+    logged_in: req.session.logged_in,
   });
   } catch (err) {
     res.status(500).json(err);

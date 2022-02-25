@@ -1,5 +1,13 @@
-<section class="post">
-  <div class="post-details">
+    {{#each posts as |post|}}
+    <section class="card">
+    <header>Posted by {{user.username}}</header>
+    <div>
+      <h1>{{post_content}}</h1>
+      <header>Posted on {{format_date post_date}}</header>
+      <h4>Comments</h4>
+    </div>
+    <div>
     {{> comment-details}}
-  </div>
-</section>
+    </div>
+    </section>
+    {{/each}}

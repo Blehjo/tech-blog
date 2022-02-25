@@ -1,7 +1,7 @@
 <section class="card">
-    <header>Posted on {{post_date}}</header>
-    <div>
-      <p>{{comments.[0].comment}}</p>
-      <p>{{format_date comments.[0].post_date}}</p>
-    </div>
+{{#each comments as |comment|}}
+  <div>
+    <p>{{comment.comment}} {{format_date comment.post_date}}</p>
+  </div>
+{{/each}}
 </section>
