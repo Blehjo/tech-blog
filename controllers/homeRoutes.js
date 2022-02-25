@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/post', async (req, res) => {
+router.get('/post', withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
       include: [
@@ -56,13 +56,14 @@ router.get('/post', async (req, res) => {
 });
 
 
-router.get('/post/:id', async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
         {
           model: User,
           attributes: [
+            'id',
             'username',
           ], 
         },
@@ -85,13 +86,14 @@ router.get('/post/:id', async (req, res) => {
 });
 
 
-router.get('/user/:id', async (req, res) => {
+router.get('/user/:id', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.params.id, { 
       include: [
         {
           model: Post,
           attributes: [
+            'id',
             'post_content',
             'post_date',
           ], 

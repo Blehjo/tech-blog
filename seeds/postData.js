@@ -52,7 +52,7 @@ const postdata = [
     {
     post_content: 
         'Log cabin blanketed in heavy white snow with tall snow covered pine trees in the background.',
-    post_date: 'January 20, 2018',
+    post_date: 'October 20, 2018',
     user_id: 4,
     },
 ];
