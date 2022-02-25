@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 
     res.render('homepage', {
       users,
-      logged_in: req.session.logged_in,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -48,7 +48,7 @@ router.get('/post', withAuth, async (req, res) => {
   
   res.render('post', {
     posts,
-    logged_in: req.session.logged_in,
+    loggedIn: req.session.loggedIn,
   });
   } catch (err) {
     res.status(500).json(err);
@@ -78,7 +78,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
   
   res.render('individualpost', {
     post,
-    logged_in: req.session.logged_in,
+    loggedIn: req.session.loggedIn,
   });
   } catch (err) {
     res.status(500).json(err);
@@ -111,7 +111,7 @@ router.get('/user/:id', withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
     res.render('user', { 
       user,
-      logged_in: req.session.logged_in, 
+      loggedIn: req.session.loggedIn, 
     });
   } catch (err) {
     console.log(err);
@@ -122,7 +122,7 @@ router.get('/user/:id', withAuth, async (req, res) => {
 
   
 router.get('/login', (req, res) => {
-  if (req.session.logged_in) {
+  if (req.session.loggedIn) {
     res.redirect('/');
     return;
   }
