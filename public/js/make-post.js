@@ -6,6 +6,7 @@ post_date = mm + '/' + dd + '/' + yyyy;
 
 const newPostFormHandler = async (event) => {
     event.preventDefault();
+    console.log('sending form');
 
     const post_title = document.querySelector('.title').value.trim();
     const post_content = document.querySelector('.textarea').value.trim();
@@ -27,5 +28,5 @@ const newPostFormHandler = async (event) => {
 }
 
 document
-    .querySelector('.post-form')
+    .querySelector('#post-form')
     .addEventListener('onSubmit', newPostFormHandler);
