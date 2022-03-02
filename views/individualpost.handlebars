@@ -9,7 +9,8 @@
         {{#each post.comments as |comment|}}
         {{> user-details}}
         {{/each}}
-    <form class="comment-form">
+        {{#if loggedIn}}
+    <form class="comment-form" id="comment-form">
             <label for="comment">Leave a comment</label>
         <div class="user-stuff">
             <input class="comment-input" type="comment" id="post-comment" name="comment-body"/>
@@ -18,6 +19,8 @@
             <button class="btn">Enter</button>
         </div>
     </form>
+        {{/if}}
     <p class="more"><a class='more' href='/user/{{post.user_id}}'>More Posts by {{post.user.username}}</a></p>
     </div>
 </section>
+<script src='/js/post-comment.js'></script>

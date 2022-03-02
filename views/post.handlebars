@@ -6,9 +6,11 @@
     <a href="/post/{{id}}"><h1>{{post_content}}</h1></a>
     <header class="dates">Posted on {{format_date post_date}}</header>
   </div>
+  {{#if comments}}
   <section>
     <h4>Comments</h4>
   {{> comment-details}}
   </section>
+  {{/if}}
 </section>
 {{/each}}

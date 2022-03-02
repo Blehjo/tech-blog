@@ -1,6 +1,7 @@
-<section class="card">
+<section class="userposts">
   <div>
     <h1>{{post_title}}</h1>
-    <p><a href="/post/{{id}}">{{post_content}}</a> {{format_date post_date}}</p>
+    <a href="/post/{{id}}">{{post_content}}</a> <br> <button class="btn {{id}}">Update</button> <button class="btn {{id}}">Delete</button>
+    <p>{{format_date post_date}}</p>
   </div>
 </section>

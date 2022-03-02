@@ -13,12 +13,14 @@
         </div>
     </form>
 </section>
+{{#if user.posts}}
 <section class="dash-card">
     <div>
-        <h1>{{user.username}}'s posts</h1>
+        <h1>Your Posts</h1>
         {{#each user.posts as |post|}}
         {{> dashboard-posts}}
         {{/each}}
     </div>
 </section>
+{{/if}}
 <script src='/js/make-post.js'></script>

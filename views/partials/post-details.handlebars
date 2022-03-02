@@ -1,3 +1,4 @@
+{{#if posts}}
 <section class="card">
   <header>Posted By: <a href="/user/{{id}}">{{username}}</a></header>
   
@@ -9,3 +10,4 @@
       <p class="date">{{format_date posts.[0].post_date}}</p>
     </div>
 </section>
+{{/if}}

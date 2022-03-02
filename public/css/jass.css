@@ -1229,6 +1229,32 @@
     padding: 1rem;
   }
 
+  .userposts {
+    border-radius: 1rem;
+    background-color: white;
+    width: 600px;
+    /* margin-bottom: 1rem; */
+    margin: auto auto 1rem auto;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .userposts h1, p, a {
+    color: black;
+  }
+
+  .userposts .btn {
+    margin: 1rem;
+  }
+
+  .userposts a {
+    font-size: 2rem;
+  }
+
+  .userposts p {
+    display: flex;
+  }
+
   .card .dates {
     color: black;
   }
