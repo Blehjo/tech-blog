@@ -1,18 +1,24 @@
-async function newPostFormHandler(event) {
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0');
+var yyyy = today.getFullYear();
+post_date = mm + '/' + dd + '/' + yyyy;
+
+const newPostFormHandler = async (event) => {
     event.preventDefault();
 
-    const title = document.querySelector('#post-title').value.trim();
-    const post_content = document.querySelector('#post-content').value.trim();
+    const post_title = document.querySelector('.title').value.trim();
+    const post_content = document.querySelector('.textarea').value.trim();
 
-    if (title && post_content) {
-        const response = await fetch(`/api/posts`, {
+    if (post_title && post_content) {
+        const response = await fetch(`/api/dashboard`, {
             method: 'POST',
-            body: JSON.stringify({ title, post_content }),
+            body: JSON.stringify({ post_title, post_content, post_date }),
             headers: { 'Content-Type': 'application/json' },
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard');
+            document.location.replace('/');
         } else {
             alert('Failed to post!');
         }
@@ -20,4 +26,6 @@ async function newPostFormHandler(event) {
 
 }
 
-document.querySelector('#post-form').addEventListener('submit', newPostFormHandler);
+document
+    .querySelector('.post-form')
+    .addEventListener('onclick', newPostFormHandler);

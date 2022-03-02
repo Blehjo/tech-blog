@@ -2,26 +2,17 @@ const router = require('express').Router();
 const { Post } = require('../../models');
 const withAuth = require('../../utils/auth')
 
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0');
-var yyyy = today.getFullYear();
-today = mm + '/' + dd + '/' + yyyy;
+
 
 // CREATE new post
 router.post('/', withAuth, async (req, res) => {
   try {
-    const commentData = await Post.create({
+    const postData = await Post.create({
+      post_title: req.body.post_title,
       post_content: req.body.post_content,
-      post_date: today,
       user_id: req.session.user_id,
     });
-
-    req.session.save(() => {
-      req.session.loggedIn = true;
-
-      res.status(200).json(commentData);
-    });
+    res.status(200).json(postData);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
