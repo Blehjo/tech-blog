@@ -21,4 +21,5 @@ console.log(comment)
     }
 };
 
-  document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);
+  document.querySelector('.comment-form')
+    .addEventListener('onSubmit', commentFormHandler);
