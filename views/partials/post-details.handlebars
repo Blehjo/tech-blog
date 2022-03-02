@@ -3,8 +3,9 @@
   
     <div>
       <a href="/post/{{id}}">
+      <h1>{{posts.[0].post_title}}</h1>
         <p>{{posts.[0].post_content}}</p>
       </a>
-      <p>{{format_date posts.[0].post_date}}</p>
+      <p class="date">{{format_date posts.[0].post_date}}</p>
     </div>
 </section>

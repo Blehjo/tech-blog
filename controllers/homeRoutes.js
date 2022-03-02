@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: Post,
-          attributes: [ 'post_content', 'post_date' ],
+          attributes: [ 'post_content', 'post_date', 'post_title' ],
           order: [['post_date', 'DESC']],
         },
       ]
@@ -94,6 +94,7 @@ router.get('/user/:id', withAuth, async (req, res) => {
           model: Post,
           attributes: [
             'id',
+            'post_title',
             'post_content',
             'post_date',
           ], 
@@ -116,6 +117,41 @@ router.get('/user/:id', withAuth, async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
+  }
+});
+
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    const userData = await User.findOne({
+      where: {
+        email: 'bseton11@gmail.com'
+      },
+      include: [
+        {
+          model: Post,
+          attributes: [
+            'id',
+            'post_title',
+            'post_content',
+            'post_date',
+          ], 
+        },
+        {
+          model: Comment,
+          attributes: [ 'comment', 'post_date' ],
+        },
+      ]
+    });
+  
+    const user = userData.get({ plain: true });
+  
+  res.render('dashboard', {
+    user,
+    loggedIn: req.session.loggedIn,
+    email: req.session.email,
+  });
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 

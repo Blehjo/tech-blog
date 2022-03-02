@@ -1,13 +1,23 @@
-<section class="card">
-<div>
-    <h1>{{post.post_content}}</h1>
-    <p>Posted on {{format_date post.post_date}}</p>
-    <h4>Comments</h4>
-</div>
-<div>
-{{#each post.comments as |comment|}}
-{{> user-details}}
-{{/each}}
-<p><a href='/user/{{post.user_id}}'>More Posts</a></p>
-</div>
+<section class="single-post">
+    <div class="info">
+        <h1>{{post.post_title}}</h1>
+        <h1>{{post.post_content}}</h1>
+        <p>Posted on {{format_date post.post_date}}</p>
+    </div>
+    <div class="comments">
+        <h4>Comments</h4>
+        {{#each post.comments as |comment|}}
+        {{> user-details}}
+        {{/each}}
+    <form class="comment-form">
+            <label for="comment">Leave a comment</label>
+        <div class="user-stuff">
+            <input class="comment-input" type="comment" id="post-comment" name="comment-body"/>
+        </div>
+        <div>
+            <button class="btn">Enter</button>
+        </div>
+    </form>
+    <p class="more"><a class='more' href='/user/{{post.user_id}}'>More Posts by {{post.user.username}}</a></p>
+    </div>
 </section>

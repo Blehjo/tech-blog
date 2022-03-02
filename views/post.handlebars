@@ -1,13 +1,14 @@
-    {{#each posts as |post|}}
-    <section class="card">
-    <header>Posted by <a href="/user/{{user_id}}">{{user.username}}</a></header>
-    <div>
-      <a href="/post/{{id}}"><h1>{{post_content}}</h1></a>
-      <header>Posted on {{format_date post_date}}</header>
-      <h4>Comments</h4>
-    </div>
-    <div>
-    {{> comment-details}}
-    </div>
-    </section>
-    {{/each}}
+{{#each posts as |post|}}
+<section class="card">
+  <header>Posted by <a href="/user/{{user_id}}">{{user.username}}</a></header>
+  <div>
+    <h1>{{post_title}}</h1>
+    <a href="/post/{{id}}"><h1>{{post_content}}</h1></a>
+    <header class="dates">Posted on {{format_date post_date}}</header>
+  </div>
+  <section>
+    <h4>Comments</h4>
+  {{> comment-details}}
+  </section>
+</section>
+{{/each}}
