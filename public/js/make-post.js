@@ -4,7 +4,6 @@ const newPostFormHandler = async (event) => {
     const post_title = document.querySelector('.title').value.trim();
     const post_content = document.querySelector('.textarea').value.trim();
 
-
     if (post_title && post_content) {
         const response = await fetch(`/api/dashboard`, {
             method: 'POST',
@@ -18,9 +17,9 @@ const newPostFormHandler = async (event) => {
             alert('Failed to post!');
         }
     }
-
 };
 
 document
-    .querySelector('#post-form')
+    .getElementById('post-form')
     .addEventListener('submit', newPostFormHandler);
+

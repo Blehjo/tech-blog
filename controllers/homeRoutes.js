@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: Post,
-          attributes: [ 'post_content', 'post_date', 'post_title' ],
+          attributes: [ 'post_content', 'post_date', 'post_title', 'id' ],
           order: [['post_date', 'DESC']],
         },
       ]
@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
     res.render('homepage', {
       users,
       loggedIn: req.session.loggedIn,
+      user_id: req.session.user_id 
     });
   } catch (err) {
     res.status(500).json(err);
@@ -49,6 +50,7 @@ router.get('/post', withAuth, async (req, res) => {
   res.render('post', {
     posts,
     loggedIn: req.session.loggedIn,
+    user_id: req.session.user_id 
   });
   } catch (err) {
     res.status(500).json(err);
@@ -79,6 +81,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
   res.render('individualpost', {
     post,
     loggedIn: req.session.loggedIn,
+    user_id: req.session.user_id 
   });
   } catch (err) {
     res.status(500).json(err);
@@ -112,7 +115,8 @@ router.get('/user/:id', withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
     res.render('user', { 
       user,
-      loggedIn: req.session.loggedIn, 
+      loggedIn: req.session.loggedIn,
+      user_id: req.session.user_id 
     });
   } catch (err) {
     console.log(err);
@@ -124,7 +128,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const userData = await User.findOne({
       where: {
-        email: 'steven@email.com'
+        email: req.session.email
       },
       include: [
         {
@@ -149,6 +153,76 @@ router.get('/dashboard', withAuth, async (req, res) => {
     user,
     loggedIn: req.session.loggedIn,
     email: req.session.email,
+    user_id: req.session.user_id 
+  });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/post/dashboard/:id', withAuth, async (req, res) => {
+  try {
+    const userData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: [
+            'id',
+            'username',
+            'email',
+          ], 
+        },
+        {
+          model: Comment,
+          attributes: [ 'comment', 'post_date' ],
+        },
+      ]
+    });
+  
+    const user = userData.get({ plain: true });
+  
+  res.render('updatepost', {
+    user,
+    loggedIn: req.session.loggedIn,
+    email: req.session.email,
+    user_id: req.session.user_id 
+  });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+router.get('/updatepost/:id', withAuth, async (req, res) => {
+  try {
+    const userData = await User.findOne({
+      where: {
+        email: req.session.email
+      },
+      include: [
+        {
+          model: Post,
+          attributes: [
+            'id',
+            'post_title',
+            'post_content',
+            'post_date',
+          ], 
+        },
+        {
+          model: Comment,
+          attributes: [ 'comment', 'post_date' ],
+        },
+      ]
+    });
+  
+    const user = userData.get({ plain: true });
+  
+  res.render('updatepost', {
+    user,
+    loggedIn: req.session.loggedIn,
+    email: req.session.email,
+    user_id: req.session.user_id 
   });
   } catch (err) {
     res.status(500).json(err);

@@ -1144,11 +1144,15 @@
     padding: 2rem;
   }
 
+.single-post .btn {
+  margin-bottom: 1rem;
+}
+
 .single-post .info{
   background-color: white;
   border-radius: 1rem;
   color: black;
-  margin: auto;
+  margin: auto auto 2rem auto;
   width: 600px;
   height: auto;
   /* padding: .5rem; */
@@ -1289,6 +1293,8 @@
     border-top: 1px solid #1a1a1a;
     padding: 0.375rem;
   }
+
+  
   
   .card.card-rounded {
     border-radius: 0.3rem;
