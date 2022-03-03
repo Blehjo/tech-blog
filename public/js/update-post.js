@@ -4,7 +4,7 @@ async function updatePostFormHandler(event) {
     const post_title = document.querySelector('#post-title').value.trim();
     const post_content = document.querySelector('#post-content').value.trim();
     
-    const user_id = window.location.toString().split('/')[6]
+    const user_id = window.location.toString().split('/')[5]
 
     const response = await fetch(`/api/posts/${user_id}`, {
         method: 'PUT',
