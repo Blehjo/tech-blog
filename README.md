@@ -21,11 +21,13 @@
   
   No installation necessary.
   
+  https://techsterblog.herokuapp.com/
+  
   ## Usage 
   
   *Instructions and examples for use:*
   
-  This is an application that is deployed to heroku.  You can access the site at the following link: 
+  This is an application that is deployed to heroku.  You can access the site at the following link: https://techsterblog.herokuapp.com/
   
   ## Contributing
   
